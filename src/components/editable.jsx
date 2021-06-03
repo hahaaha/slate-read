@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import { useChildren } from "../hooks/use-children"
 import { DecorateContext } from "../hooks/use-decorate"
 import { ReadOnlyContext } from "../hooks/use-read-only"
@@ -12,8 +13,8 @@ export const Editable = (props) => {
         Component = 'div',
         renderElement,
         renderLeaf,
-        decorate = defaultDecorate
-
+        decorate = defaultDecorate,
+        ...attributes
     } = props
     const editor = useSlate()
 
@@ -23,6 +24,7 @@ export const Editable = (props) => {
                 <Component
                     contentEditable={readOnly ? undefined : true}
                     data-slate-node="value"
+                    {...attributes}
                 >
                     {useChildren({
                         node: editor,

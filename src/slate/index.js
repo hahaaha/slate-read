@@ -1,2 +1,7 @@
 export * from './interfaces/element'
 export * from './interfaces/text'
+export * from './interfaces/node'
+export * from './interfaces/path'
+export * from './interfaces/range'
+export * from './interfaces/point'
+export * from './transforms'

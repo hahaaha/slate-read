@@ -22,8 +22,6 @@ export const useChildren = (props) => {
     const editor = useSlateStatic()
 
     const children = []
-    
-    console.log(node)
 
     for (let i = 0; i < node.children.length; i++) {
         const n = node.children[i]
