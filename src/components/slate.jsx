@@ -1,6 +1,7 @@
-import { useCallback, useMemo } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { SlateContext } from "../hooks/use-slate"
 import { EditorContext } from "../hooks/use-slate-static"
+import { ReactEditor } from "../plugin/react-editor"
 import { EDITOR_TO_ON_CHANGE } from "../utils/weak-maps"
 
 export const Slate = (props) => {
@@ -18,6 +19,8 @@ export const Slate = (props) => {
     },[onChange])
 
     EDITOR_TO_ON_CHANGE.set(editor,onContextChange)
+
+    const [isFocused, setIsFocused] = useState(ReactEditor.isFocused(editor))
 
     return (
         <SlateContext.Provider value={context}>

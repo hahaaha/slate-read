@@ -12,6 +12,7 @@ export const createEditor = () => {
         insertText: (text) => {
             const { selection, marks } = editor
             console.log("insertText")
+            console.log(selection)
             if (selection) {
                 if (Range.isCollapsed) {
                     const inline = Editor.above(editor, {
@@ -43,7 +44,24 @@ export const createEditor = () => {
 
         apply: (op) => {
             const set = new Set()
+            const dirtyPaths = []
 
+            const add = (path) => {
+                if (path) {
+                    const key = path.join(",")
+
+                    if (!set.has(key)) {
+                        set.add(key)
+                        dirtyPaths.push(key)
+                    }
+                }
+            }
+
+            Promise.resolve().then(() => {
+                console.log("prinse")
+                editor.onChange()
+                editor.operations = []
+            })
         }
     }
 
