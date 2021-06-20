@@ -35,8 +35,15 @@ export const Range = {
         return start
     },
     end(range) {
-        const [,end] = Range.edges(range)
+        const [, end] = Range.edges(range)
         return end
+    },
+    // 检查range 是不是等于 another
+    equals(range, another) {
+        return (
+            Point.equals(range.anchor, another.anchor) &&
+            Point.equals(range.focus, another.focus)
+        )
     }
-    
+
 }

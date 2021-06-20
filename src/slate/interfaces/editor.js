@@ -175,5 +175,10 @@ export const Editor = {
     },
     after() {
         
+    },
+
+   
+    insertText(editor, text) {
+        editor.insertText(text)
     }
 }

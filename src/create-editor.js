@@ -1,5 +1,6 @@
 import { Range, Transforms } from './slate/index'
 import { Editor } from './slate/interfaces/editor'
+import { FLUSHING } from './utils/weak-maps'
 export const createEditor = () => {
     const editor = {
         children: [],
@@ -43,6 +44,7 @@ export const createEditor = () => {
         },
 
         apply: (op) => {
+            console.log(op)
             const set = new Set()
             const dirtyPaths = []
 
@@ -56,12 +58,17 @@ export const createEditor = () => {
                     }
                 }
             }
+            
+            if(!FLUSHING.get(editor)) {
+                FLUSHING.set(editor, true)
 
-            Promise.resolve().then(() => {
-                console.log("prinse")
-                editor.onChange()
-                editor.operations = []
-            })
+                Promise.resolve().then(() => {
+                    FLUSHING.set(editor, false)
+                    editor.onChange()
+                    editor.operations = []
+                })
+            }
+            
         }
     }
 

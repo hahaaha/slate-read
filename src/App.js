@@ -10,8 +10,8 @@ function App() {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props =><Leaf {...props} />, [])
   const changeEvent = value => {
-    setValue(value)
     console.log(value)
+    setValue(value)
   }
 
   return (
@@ -19,6 +19,7 @@ function App() {
       <Slate editor={editor} value={value} onChange={changeEvent}>
         <Editable
           renderElement={renderElement}
+          autoFocus
           onKeyDown={event => {
             if (event.key === "&") {
               console.log("test insert")
