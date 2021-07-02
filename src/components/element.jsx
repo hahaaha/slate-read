@@ -7,6 +7,7 @@ export const Element = (props) => {
         renderLeaf
     } = props
 
+    // 生成对应的text
     let children = useChildren({
         node: element,
         renderElement,
